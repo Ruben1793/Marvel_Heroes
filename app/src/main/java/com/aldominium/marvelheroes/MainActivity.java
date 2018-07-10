@@ -17,12 +17,14 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int AVENGERS_COMIC_ID = 354;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Call<Basic<Data<ArrayList<SuperHero>>>> superHeroesCall = MarvelService.getMarveApi().getHeroes(354);
+        Call<Basic<Data<ArrayList<SuperHero>>>> superHeroesCall = MarvelService.getMarveApi().getHeroes(AVENGERS_COMIC_ID);
 
         superHeroesCall.enqueue(new Callback<Basic<Data<ArrayList<SuperHero>>>>() {
             @Override
