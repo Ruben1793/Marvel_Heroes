@@ -2,6 +2,7 @@ package com.aldominium.marvelheroes;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.aldominium.marvelheroes.Api.MarvelService;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Basic<Data<ArrayList<SuperHero>>>> call, Response<Basic<Data<ArrayList<SuperHero>>>> response) {
                 Toast.makeText(MainActivity.this, "Hero Name: " + response.body().getData().getResults().get(0).getName(), Toast.LENGTH_LONG).show();
+                Log.d("RESPONSE:", "Hero Name: " + response.body().getData().getResults().get(0).getName());
             }
 
             @Override
