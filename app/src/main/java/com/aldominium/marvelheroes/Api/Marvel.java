@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface Marvel {
 
@@ -26,4 +27,7 @@ public interface Marvel {
 
     @GET("v1/public/series/{seriesId}/characters?")
     Call<Basic<Data<ArrayList<SuperHero>>>> getHeroes(@Path("seriesId") int seriesId);
+
+    @GET("v1/public/series/{seriesId}/characters?")
+    Call<Basic<Data<ArrayList<SuperHero>>>> getHeroes(@Path("seriesId") int seriesId, @Query("orderBy") String sort);
 }
