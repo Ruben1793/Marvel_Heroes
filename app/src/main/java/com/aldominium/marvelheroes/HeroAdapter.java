@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class HeroAdapter extends RecyclerView.Adapter<HeroAdapter.MyViewHoder>{
+public class HeroAdapter extends RecyclerView.Adapter<HeroAdapter.MyViewHolder>{
 
     ArrayList<SuperHero> superHeroArrayList;
     Context context;
@@ -24,13 +24,13 @@ public class HeroAdapter extends RecyclerView.Adapter<HeroAdapter.MyViewHoder>{
     }
 
     @Override
-    public MyViewHoder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.hero_list_item, parent, false);
-        return new MyViewHoder(view);
+        return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(MyViewHoder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, int position) {
         SuperHero superHero = superHeroArrayList.get(position);
         holder.heroDetailNameTextView.setText(superHero.getName());
         //holder.heroPictureImageView.setImageResource(superHero.getThumbnail());
@@ -44,12 +44,12 @@ public class HeroAdapter extends RecyclerView.Adapter<HeroAdapter.MyViewHoder>{
         return superHeroArrayList.size();
     }
 
-    public class MyViewHoder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder{
 
         public ImageView heroPictureImageView;
         public TextView heroDetailNameTextView;
 
-        public MyViewHoder(View itemView) {
+        public MyViewHolder(View itemView) {
             super(itemView);
 
             heroPictureImageView = itemView.findViewById(R.id.heroPictureImageView);
