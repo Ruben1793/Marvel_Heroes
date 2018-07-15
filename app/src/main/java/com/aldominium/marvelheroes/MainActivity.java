@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String HERO_LIST_FRAGMENT = "hero_list_fragment";
     private static final String TAG = MainActivity.class.getSimpleName();
     public static final int SUCCESS_CODE = 200;
+    public static final String HERO_LIST = "hero_list";
 
 
     private FrameLayout frameLayout;
@@ -49,11 +50,15 @@ public class MainActivity extends AppCompatActivity {
                 if (response.code() == SUCCESS_CODE){
 
                     superHeroes = response.body().getData().getResults();
-                    Toast.makeText(MainActivity.this, "Hero Name: " + superHeroes.get(0).getName() ,Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Hero Name: "+superHeroes.get(0).getName(),Toast.LENGTH_LONG).show();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelableArrayList(HERO_LIST,superHeroes);
 
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     HeroListFragment heroListFragment = new HeroListFragment();
+                    heroListFragment.setArguments(bundle);
                     fragmentTransaction.add(R.id.placeholder, heroListFragment,HERO_LIST_FRAGMENT);
                     fragmentTransaction.commit();
                 }
