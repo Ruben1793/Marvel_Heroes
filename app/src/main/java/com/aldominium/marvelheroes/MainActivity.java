@@ -1,5 +1,7 @@
 package com.aldominium.marvelheroes;
 
+
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +21,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String HERO_LIST_FRAGMENT = "hero_list_fragment";
     private FrameLayout frameLayout;
 
     public static final int AVENGERS_COMIC_ID = 354;
@@ -46,5 +49,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         frameLayout = findViewById(R.id.placeholder);
+
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        HeroListFragment heroListFragment = new HeroListFragment();
+        fragmentTransaction.add(R.id.placeholder, heroListFragment,HERO_LIST_FRAGMENT);
+        fragmentTransaction.commit();
+
     }
 }
