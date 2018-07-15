@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aldominium.marvelheroes.Models.SuperHero;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -33,6 +34,8 @@ public class HeroAdapter extends RecyclerView.Adapter<HeroAdapter.MyViewHoder>{
         SuperHero superHero = superHeroArrayList.get(position);
         holder.heroDetailNameTextView.setText(superHero.getName());
         //holder.heroPictureImageView.setImageResource(superHero.getThumbnail());
+
+        Picasso.with(context).load(superHero.getThumbnail().getFullPath()).into(holder.heroPictureImageView);
 
     }
 
