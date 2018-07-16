@@ -22,6 +22,12 @@ public class HeroListFragment extends Fragment {
     ArrayList<SuperHero> superHeroes;
     RecyclerView recyclerView;
 
+    public HeroListFragment(){}
+
+    public interface HeroClickListener{
+        void HeroClicked();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,9 +48,19 @@ public class HeroListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_hero_list, container, false);
         recyclerView = view.findViewById(R.id.superHeroesRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        HeroAdapter heroAdapter = new HeroAdapter(superHeroes, getContext());
+        HeroAdapter heroAdapter = new HeroAdapter(superHeroes, getContext(), new HeroClickListener() {
+            @Override
+            public void HeroClicked() {
+                //Cambiar de Fragment
+                goToHeroDetailFragment();
+            }
+        });
         recyclerView.setAdapter(heroAdapter);
         return view;
+    }
+
+    private void goToHeroDetailFragment() {
+        Toast.makeText(getContext(), "Hero Clicked", Toast.LENGTH_SHORT).show();
     }
 
 }

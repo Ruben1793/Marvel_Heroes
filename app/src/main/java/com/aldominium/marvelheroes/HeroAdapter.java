@@ -18,7 +18,7 @@ public class HeroAdapter extends RecyclerView.Adapter<HeroAdapter.MyViewHolder>{
     ArrayList<SuperHero> superHeroArrayList;
     Context context;
 
-    public HeroAdapter(ArrayList superHeroArrayList, Context context){
+    public HeroAdapter(ArrayList superHeroArrayList, Context context, HeroListFragment.HeroClickListener heroClickListener){
         this.superHeroArrayList = superHeroArrayList;
         this.context = context;
     }
