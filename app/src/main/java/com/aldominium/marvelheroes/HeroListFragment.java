@@ -25,7 +25,7 @@ public class HeroListFragment extends Fragment {
     public HeroListFragment(){}
 
     public interface HeroClickListener{
-        void HeroClicked();
+        void HeroClicked(SuperHero superHero);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class HeroListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         HeroAdapter heroAdapter = new HeroAdapter(superHeroes, getContext(), new HeroClickListener() {
             @Override
-            public void HeroClicked() {
+            public void HeroClicked(SuperHero superHero) {
                 //Cambiar de Fragment
                 goToHeroDetailFragment();
             }
