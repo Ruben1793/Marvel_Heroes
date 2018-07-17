@@ -69,6 +69,7 @@ public class HeroListFragment extends Fragment {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.placeholder, heroDetailFragment, HERO_DETAIL_FRAGMENT);
+        fragmentTransaction.addToBackStack(HERO_DETAIL_FRAGMENT);
         fragmentTransaction.commit();
     }
 
