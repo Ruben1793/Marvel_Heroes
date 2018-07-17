@@ -52,15 +52,15 @@ public class HeroListFragment extends Fragment {
             @Override
             public void HeroClicked(SuperHero superHero) {
                 //Cambiar de Fragment
-                goToHeroDetailFragment();
+                goToHeroDetailFragment(superHero);
             }
         });
         recyclerView.setAdapter(heroAdapter);
         return view;
     }
 
-    private void goToHeroDetailFragment() {
-        Toast.makeText(getContext(), "Hero Clicked", Toast.LENGTH_SHORT).show();
+    private void goToHeroDetailFragment(SuperHero superHero) {
+        Toast.makeText(getContext(), "Hero Clicked" + superHero.getName(),  Toast.LENGTH_SHORT).show();
     }
 
 }
