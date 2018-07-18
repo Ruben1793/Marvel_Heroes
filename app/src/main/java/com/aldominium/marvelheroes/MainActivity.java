@@ -50,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
                 if (response.code() == SUCCESS_CODE){
 
                     superHeroes = response.body().getData().getResults();
-                    Toast.makeText(MainActivity.this, "Hero Name: "+superHeroes.get(0).getName(),Toast.LENGTH_LONG).show();
-
                     Bundle bundle = new Bundle();
                     bundle.putParcelableArrayList(HERO_LIST,superHeroes);
 
