@@ -54,11 +54,15 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putParcelableArrayList(HERO_LIST,superHeroes);
 
                     FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    HeroListFragment heroListFragment = new HeroListFragment();
-                    heroListFragment.setArguments(bundle);
-                    fragmentTransaction.add(R.id.placeholder, heroListFragment,HERO_LIST_FRAGMENT);
-                    fragmentTransaction.commit();
+                    HeroListFragment savedFragment = (HeroListFragment) fragmentManager.findFragmentByTag(HERO_LIST_FRAGMENT);
+
+                    if (savedFragment == null) {
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        HeroListFragment heroListFragment = new HeroListFragment();
+                        heroListFragment.setArguments(bundle);
+                        fragmentTransaction.add(R.id.placeholder, heroListFragment, HERO_LIST_FRAGMENT);
+                        fragmentTransaction.commit();
+                    }
                 }
                 else{
                     Log.d(TAG,"Error en la respuesta");
