@@ -3,4 +3,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="copyright_marvel">Copyright Marvel</string>
+    <string name="service_error_message">Error con el servidor. Tratar nuevamente?</string>
+    <string name="network_error_message">Error de red. Tratar nuevamente?</string>
+    <string name="Ok">Ok</string>
+
 </resources>

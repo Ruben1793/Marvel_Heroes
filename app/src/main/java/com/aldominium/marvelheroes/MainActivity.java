@@ -66,19 +66,19 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else{
-                    displayErrorMessage("Error con el servidor. Tratar nuevamente?");
+                    displayErrorMessage(getString(R.string.network_error_message));
                 }
             }
             @Override
             public void onFailure(Call<Basic<Data<ArrayList<SuperHero>>>> call, Throwable t) {
-                displayErrorMessage("Error de red. Tratar nuevamente?");
+                displayErrorMessage(getString(R.string.service_error_message));
             }
         });
     }
 
     public void displayErrorMessage(String message){
         Snackbar snackbar = Snackbar.make(frameLayout, message, Snackbar.LENGTH_INDEFINITE)
-                .setAction("Ok", new View.OnClickListener() {
+                .setAction(R.string.Ok, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         getHeroList();
