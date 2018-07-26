@@ -1,10 +1,12 @@
 package com.aldominium.marvelheroes;
 
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -38,24 +40,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         frameLayout = findViewById(R.id.placeholder);
+        getHeroList();
 
+
+    }
+
+    private void getHeroList(){
         Call<Basic<Data<ArrayList<SuperHero>>>> superHeroesCall = MarvelService.getMarveApi().getHeroes(AVENGERS_COMIC_ID);
-
         superHeroesCall.enqueue(new Callback<Basic<Data<ArrayList<SuperHero>>>>() {
             @Override
             public void onResponse(Call<Basic<Data<ArrayList<SuperHero>>>> call, Response<Basic<Data<ArrayList<SuperHero>>>> response) {
-
                 Log.d("RESPONSE:", "Hero Name: " + response.body().getData().getResults().get(0).getName());
-
                 if (response.code() == SUCCESS_CODE){
-
                     superHeroes = response.body().getData().getResults();
                     Bundle bundle = new Bundle();
                     bundle.putParcelableArrayList(HERO_LIST,superHeroes);
-
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     HeroListFragment savedFragment = (HeroListFragment) fragmentManager.findFragmentByTag(HERO_LIST_FRAGMENT);
-
                     if (savedFragment == null) {
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         HeroListFragment heroListFragment = new HeroListFragment();
@@ -65,18 +66,24 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else{
-                    Log.d(TAG,"Error en la respuesta");
+                    displayErrorMessage("Error con el servidor. Tratar nuevamente?");
                 }
-
-
             }
-
             @Override
             public void onFailure(Call<Basic<Data<ArrayList<SuperHero>>>> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Error en la llamada " , Toast.LENGTH_SHORT).show();
-
+                displayErrorMessage("Error de red. Tratar nuevamente?");
             }
         });
+    }
 
+    public void displayErrorMessage(String message){
+        Snackbar snackbar = Snackbar.make(frameLayout, message, Snackbar.LENGTH_INDEFINITE)
+                .setAction("Ok", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getHeroList();
+                    }
+                });
+        snackbar.show();
     }
 }
