@@ -5,7 +5,7 @@
     <string name="copyright_marvel">Copyright Marvel</string>
     <string name="service_error_message">Error con el servidor. Tratar nuevamente?</string>
     <string name="network_error_message">Error de red. Tratar nuevamente?</string>
-    <string name="Ok">Ok</string>
-    <string name="No_Information_Available">No information available</string>
+    <string name="Ok">OK</string>
+    <string name="No_Information_Available">No hay informacion disponible</string>
 
 </resources>

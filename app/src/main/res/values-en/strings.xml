@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Marvel Heroes</string>
+    <string name="copyright_marvel">Copyright Marvel</string>
+    <string name="service_error_message">Server Error. Try again?</string>
+    <string name="network_error_message">Network Error. Try again?</string>
+    <string name="Ok">OK</string>
+    <string name="No_Information_Available">No information available</string>
+</resources>
