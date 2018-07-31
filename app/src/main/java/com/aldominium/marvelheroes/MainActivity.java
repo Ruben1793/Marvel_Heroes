@@ -56,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
                     Bundle bundle = new Bundle();
                     bundle.putParcelableArrayList(HERO_LIST,superHeroes);
                     FragmentManager fragmentManager = getSupportFragmentManager();
+                    boolean isTablet = getResources().getBoolean(R.bool.is_tablet);
+                    if (isTablet){
+                        Toast.makeText(MainActivity.this, "Esta es una tablet", Toast.LENGTH_SHORT).show();
+                    }
                     HeroListFragment savedFragment = (HeroListFragment) fragmentManager.findFragmentByTag(HERO_LIST_FRAGMENT);
                     if (savedFragment == null) {
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
